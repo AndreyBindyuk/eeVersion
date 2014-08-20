@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Java EE 6 Starter Application</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:dataTable id="shelves" paginator="true" rows="10" var="shelf"
+                     sortOrder="descending" ajax="true" sortMode="multiple"
+                     value="#{BookShelvesManagedBean.shelves}"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <p:column sortBy="id" headerText="№">
+                <h:outputText value="#{shelf.id}"/>
+            </p:column>
+            <p:column sortBy="name" headerText="Name">
+                <h:commandLink value="#{shelf.name}"
+                               action="#{BookShelvesManagedBean.showBookList}">
+                    <f:param name="id" value="#{shelf.id}">
+                    </f:param>
+                </h:commandLink>
+            </p:column>
+            <p:column sortBy="genre" headerText="Genre">
+                <h:outputText value="#{shelf.genre}"/>
+            </p:column>
+            <p:column sortBy="numberOfBooks" headerText="Number of books">
+                <h:outputText value="#{shelf.numberOfBooks}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
+
+
+
